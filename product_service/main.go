@@ -3,6 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Test 3")
-
+	fmt.Println("Product service running...")
 }
