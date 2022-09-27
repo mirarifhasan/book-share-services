@@ -15,5 +15,5 @@ import (
 func main() {
 	routers.Routers()
 	db.ConnectToDB()
-	db.DB.AutoMigrate(models.Product{})
+	db.DB.AutoMigrate(models.User{})
 }

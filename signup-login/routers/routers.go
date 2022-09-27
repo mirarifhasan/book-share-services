@@ -13,7 +13,6 @@ import (
 
 func Routers() *gin.Engine {
 	router := gin.Default()
-
 	router.Run(configs.GetEnv().Port)
 	return router
 }
