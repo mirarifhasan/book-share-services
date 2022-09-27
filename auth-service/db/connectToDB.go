@@ -9,7 +9,7 @@ package db
 import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"help/configs"
+	"auth_service/configs"
 	"log"
 )
 

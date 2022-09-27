@@ -7,9 +7,9 @@
 package main
 
 import (
-	"help/db"
-	"help/models"
-	"help/routers"
+	"auth_service/db"
+	"auth_service/models"
+	"auth_service/routers"
 )
 
 func main() {

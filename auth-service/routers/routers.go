@@ -8,7 +8,7 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
-	"help/configs"
+	"auth_service/configs"
 )
 
 func Routers() *gin.Engine {
