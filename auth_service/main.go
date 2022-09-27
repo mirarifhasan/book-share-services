@@ -9,11 +9,11 @@ package main
 import (
 	"auth_service/db"
 	"auth_service/src/user/models"
-	"auth_service/routers"
+	"auth_service/routes"
 )
 
 func main() {
-	routers.Routers()
+	routes.Register()
 	db.ConnectToDB()
 	db.DB.AutoMigrate(models.User{})
 }

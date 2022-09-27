@@ -4,21 +4,24 @@
  *
  */
 
-package routers
+package routes
 
 import (
-	"github.com/gin-gonic/gin"
 	"auth_service/configs"
+	"auth_service/src/user/routes"
+	"github.com/gin-gonic/gin"
 )
 
-func Routers() *gin.Engine {
+func Register() *gin.Engine {
 	router := gin.Default()
 
-	router.GET("/ping", func(context *gin.Context) {
+	router.GET("/", func(context *gin.Context) {
 		context.JSON(200, gin.H{
-			"msg": "pong",
+			"app": "Auth Service running",
 		})
 	})
+
+	routes.UserRouteSetup(router)
 
 	router.Run(configs.GetEnv().Port)
 	return router
