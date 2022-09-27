@@ -4,4 +4,4 @@
  *
  */
 
-package repository
+package repositories

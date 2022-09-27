@@ -8,7 +8,7 @@ package main
 
 import (
 	"auth_service/db"
-	"auth_service/models"
+	"auth_service/src/user/models"
 	"auth_service/routers"
 )
 
