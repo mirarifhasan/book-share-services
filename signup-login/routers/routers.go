@@ -13,6 +13,13 @@ import (
 
 func Routers() *gin.Engine {
 	router := gin.Default()
+
+	router.GET("/ping", func(context *gin.Context) {
+		context.JSON(200, gin.H{
+			"msg": "pong",
+		})
+	})
+
 	router.Run(configs.GetEnv().Port)
 	return router
 }
