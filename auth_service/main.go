@@ -8,12 +8,17 @@ package main
 
 import (
 	"auth_service/db"
-	"auth_service/src/user/models"
 	"auth_service/routes"
+	"auth_service/src/user/models"
 )
 
+// @title        Auth Service API Doc
+// @version      1.0
+// @description  API Documentation
+// @BasePath     /api/v1
 func main() {
-	routes.Register()
 	db.ConnectToDB()
+	routes.Register()
+
 	db.DB.AutoMigrate(models.User{})
 }

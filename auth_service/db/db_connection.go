@@ -7,10 +7,12 @@
 package db
 
 import (
+	"auth_service/configs"
+	"fmt"
+	"log"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"auth_service/configs"
-	"log"
 )
 
 var DB *gorm.DB
@@ -23,4 +25,5 @@ func ConnectToDB() {
 		log.Fatal("Failed to connect to DB")
 	}
 	DB = db
+	fmt.Println("DB Connected")
 }

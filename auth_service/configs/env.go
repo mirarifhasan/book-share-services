@@ -15,6 +15,7 @@ import (
 type EnvVariables struct {
 	Port          string
 	DBConstraints string
+	AuthServiceBaseUrl string
 }
 
 var env *EnvVariables
@@ -31,6 +32,7 @@ func initEnvVariable() {
 	env = &EnvVariables{
 		Port:          os.Getenv("PORT"),
 		DBConstraints: os.Getenv("DB_CONSTRAINTS"),
+		AuthServiceBaseUrl: os.Getenv("AUTH_SERVICE_BASE_URL"),
 	}
 }
 
