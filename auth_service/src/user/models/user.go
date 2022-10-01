@@ -7,7 +7,7 @@
 package models
 
 import (
-	"time"
+	// "time"
 
 	"gorm.io/gorm"
 )
@@ -24,8 +24,5 @@ type User struct {
 	Address        string    `json:"address"`
 	IpAddress      string    `json:"ip_address"`
 	DeviceId       string    `json:"device_id"`
-	LastActiveTime time.Time `json:"last_active_time"`
-	
-	// CreatedAt      time.Time `json:"created_at"`
-	// UpdatedAt      time.Time `json:"updated_at"`
+	// LastActiveTime time.Time `json:"last_active_time,omitempty"`
 }

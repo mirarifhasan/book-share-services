@@ -26,10 +26,16 @@ func Signup() gin.HandlerFunc {
 		var dto dtos.UserSignupRequest
 
 		if err := c.ShouldBind(&dto); err != nil {
-			fmt.Println("Error khaise")
+			c.AbortWithError(http.StatusBadRequest, err)
 		}
 
-		services.Signup(dto)
-		c.JSON(http.StatusCreated, nil)
+		res, err := services.Signup(c, dto)
+
+		if err != nil {
+			c.AbortWithError(http.StatusForbidden, err)
+			return
+		}
+
+		c.JSON(http.StatusCreated, res)
 	}
 }
