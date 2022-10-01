@@ -18,7 +18,7 @@ import (
 // @BasePath     /api/v1
 func main() {
 	db.ConnectToDB()
-	routes.Register()
-
 	db.DB.AutoMigrate(models.User{})
+
+	routes.Register()
 }

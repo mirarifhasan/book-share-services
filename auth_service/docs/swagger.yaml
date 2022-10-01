@@ -1,8 +1,45 @@
 basePath: /api/v1
+definitions:
+  dtos.UserSignupRequest:
+    properties:
+      name:
+        description: 'required: true'
+        type: string
+      password:
+        description: 'required: true'
+        type: string
+      phone:
+        description: 'required: true'
+        type: string
+    required:
+    - name
+    - password
+    - phone
+    type: object
 info:
   contact: {}
   description: API Documentation
   title: Auth Service API Doc
   version: "1.0"
-paths: {}
+paths:
+  /signup:
+    post:
+      consumes:
+      - application/json
+      description: Signup a user for the first time
+      parameters:
+      - description: User Signup Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.UserSignupRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+      summary: Signup a user
+      tags:
+      - Auth
 swagger: "2.0"

@@ -13,25 +13,21 @@ import (
 )
 
 type EnvVariables struct {
-	Port          string
-	DBConstraints string
-	AuthServiceBaseUrl string
+	Port               string `default:""`
+	DBConstraints      string `default:""`
+	AuthServiceBaseUrl string `default:""`
 }
 
 var env *EnvVariables
 
 func initEnvVariable() {
-	if env != nil {
-		return
-	}
-
 	if err := godotenv.Load(); err != nil {
 		log.Fatal("Error loading .env file")
 	}
 
 	env = &EnvVariables{
-		Port:          os.Getenv("PORT"),
-		DBConstraints: os.Getenv("DB_CONSTRAINTS"),
+		Port:               os.Getenv("PORT"),
+		DBConstraints:      os.Getenv("DB_CONSTRAINTS"),
 		AuthServiceBaseUrl: os.Getenv("AUTH_SERVICE_BASE_URL"),
 	}
 }

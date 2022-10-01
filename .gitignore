@@ -1,6 +1,7 @@
 .idea
 .data
 
-*/.env
+**/*.env
 */tmp
 /tmp
+**/auth_service/.env
