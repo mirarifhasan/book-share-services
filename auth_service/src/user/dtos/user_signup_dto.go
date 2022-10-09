@@ -1,7 +1,7 @@
 package dtos
 
-// swagger:parameters UserSignupRequest
-type UserSignupRequest struct {
+// swagger:parameters UserSignUpRequest
+type UserSignUpRequest struct {
 	// required: true
 	Name string `form:"name" json:"name" xml:"name" binding:"required"`
 	// required: true

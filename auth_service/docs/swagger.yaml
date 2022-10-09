@@ -1,6 +1,6 @@
 basePath: /api/v1
 definitions:
-  dtos.UserSignupRequest:
+  dtos.UserSignUpRequest:
     properties:
       name:
         description: 'required: true'
@@ -26,20 +26,20 @@ paths:
     post:
       consumes:
       - application/json
-      description: Signup a user for the first time
+      description: SignUp a user for the first time
       parameters:
-      - description: User Signup Request
+      - description: User SignUp Request
         in: body
         name: request
         required: true
         schema:
-          $ref: '#/definitions/dtos.UserSignupRequest'
+          $ref: '#/definitions/dtos.UserSignUpRequest'
       produces:
       - application/json
       responses:
         "201":
           description: Created
-      summary: Signup a user
+      summary: SignUp a user
       tags:
       - Auth
 swagger: "2.0"

@@ -18,7 +18,7 @@ const docTemplate = `{
     "paths": {
         "/signup": {
             "post": {
-                "description": "Signup a user for the first time",
+                "description": "SignUp a user for the first time",
                 "consumes": [
                     "application/json"
                 ],
@@ -28,15 +28,15 @@ const docTemplate = `{
                 "tags": [
                     "Auth"
                 ],
-                "summary": "Signup a user",
+                "summary": "SignUp a user",
                 "parameters": [
                     {
-                        "description": "User Signup Request",
+                        "description": "User SignUp Request",
                         "name": "request",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/dtos.UserSignupRequest"
+                            "$ref": "#/definitions/dtos.UserSignUpRequest"
                         }
                     }
                 ],
@@ -49,7 +49,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "dtos.UserSignupRequest": {
+        "dtos.UserSignUpRequest": {
             "type": "object",
             "required": [
                 "name",

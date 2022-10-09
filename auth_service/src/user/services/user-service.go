@@ -6,11 +6,13 @@ import (
 	"auth_service/src/user/models"
 	"errors"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
+	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
-func Signup(c *gin.Context, dto dtos.UserSignupRequest) (res interface{}, err error) {
+func SignUp(c *gin.Context, dto dtos.UserSignUpRequest) (res interface{}, err error) {
 	var existUsers []models.User
 	db.DB.Model(&models.User{}).Where(map[string]interface{}{"phone": dto.Phone}).Find(&existUsers)
 
@@ -19,12 +21,15 @@ func Signup(c *gin.Context, dto dtos.UserSignupRequest) (res interface{}, err er
 		return nil, errors.New("phone already exist")
 	}
 
-	var newUserDto *models.User = new(models.User)
-	newUserDto.Name = dto.Name
-	newUserDto.Phone = dto.Phone
-	newUserDto.Password = dto.Password
+	var newUser *models.User = new(models.User)
+	newUser.Name = dto.Name
+	newUser.Phone = dto.Phone
+	newUser.Password = dto.Password
+	newUser.LastActiveTime = time.Now()
 
-	newUser := db.DB.Create(newUserDto)
+	if err := db.DB.Create(&newUser).Error; err != nil {
+		return nil, err
+	}
 
 	return newUser, nil
 }

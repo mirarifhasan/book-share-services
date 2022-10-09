@@ -7,14 +7,13 @@
 package models
 
 import (
-	// "time"
+	"time"
 
 	"gorm.io/gorm"
 )
 
 type User struct {
 	gorm.Model
-	ID             uint      `json:"id"`
 	Name           string    `json:"name"`
 	Phone          string    `json:"phone"`
 	Email          string    `json:"email"`
@@ -24,5 +23,5 @@ type User struct {
 	Address        string    `json:"address"`
 	IpAddress      string    `json:"ip_address"`
 	DeviceId       string    `json:"device_id"`
-	// LastActiveTime time.Time `json:"last_active_time,omitempty"`
+	LastActiveTime time.Time `json:"last_active_time,omitempty"`
 }
