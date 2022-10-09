@@ -2,8 +2,10 @@ package services
 
 import (
 	"auth_service/db"
+	shared "auth_service/src/shared"
 	"auth_service/src/user/dtos"
 	"auth_service/src/user/models"
+	// "encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -31,7 +33,12 @@ func SignUp(c *gin.Context, dto dtos.UserSignUpRequest) (res interface{}, err er
 		return nil, err
 	}
 
-	return newUser, nil
+	var responseData dtos.UserSignUpResponse
+	responseData.Token = "abc"
+
+	res, _ = shared.StructToMap(responseData)
+
+	return res, nil
 }
 
 func Login(context *gin.Context) {

@@ -16,6 +16,14 @@ definitions:
     - password
     - phone
     type: object
+  dtos.UserSignUpResponse:
+    properties:
+      token:
+        description: 'required: true'
+        type: string
+    required:
+    - token
+    type: object
 info:
   contact: {}
   description: API Documentation
@@ -39,6 +47,8 @@ paths:
       responses:
         "201":
           description: Created
+          schema:
+            $ref: '#/definitions/dtos.UserSignUpResponse'
       summary: SignUp a user
       tags:
       - Auth

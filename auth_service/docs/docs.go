@@ -42,7 +42,10 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "201": {
-                        "description": "Created"
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/dtos.UserSignUpResponse"
+                        }
                     }
                 }
             }
@@ -66,6 +69,18 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "phone": {
+                    "description": "required: true",
+                    "type": "string"
+                }
+            }
+        },
+        "dtos.UserSignUpResponse": {
+            "type": "object",
+            "required": [
+                "token"
+            ],
+            "properties": {
+                "token": {
                     "description": "required: true",
                     "type": "string"
                 }

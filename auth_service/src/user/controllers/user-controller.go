@@ -9,15 +9,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// UserSigngup
+// UserSignUp
 // @Summary  SignUp a user
 // @Schemes
 // @Description  SignUp a user for the first time
 // @Tags         Auth
 // @Accept       json
 // @Produce      json
-// @Param        request               body    dtos.UserSignUpRequest  true  "User SignUp Request"
-// @Success      201
+// @Param        request               body     dtos.UserSignUpRequest  true  "User SignUp Request"
+// @Success      201 				   {object} dtos.UserSignUpResponse
 // @Router       /signup [post]
 func SignUp() gin.HandlerFunc {
 	return func(c *gin.Context) {
