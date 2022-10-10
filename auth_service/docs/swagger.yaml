@@ -11,6 +11,18 @@ definitions:
       rating:
         type: integer
     type: object
+  dtos.UserLoginRequest:
+    properties:
+      password:
+        description: 'required: true'
+        type: string
+      phone:
+        description: 'required: true'
+        type: string
+    required:
+    - password
+    - phone
+    type: object
   dtos.UserSignUpRequest:
     properties:
       name:
@@ -40,6 +52,24 @@ info:
   title: Auth Service API Doc
   version: "1.0"
 paths:
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Login a user
+      parameters:
+      - description: User Login Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.UserLoginRequest'
+      produces:
+      - application/json
+      responses: {}
+      summary: Login a user
+      tags:
+      - Auth
   /signup:
     post:
       consumes:

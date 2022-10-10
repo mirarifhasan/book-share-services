@@ -6,7 +6,6 @@ import (
 	"auth_service/src/user/dtos"
 	"auth_service/src/user/models"
 	"errors"
-	"fmt"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -42,10 +41,25 @@ func SignUp(c *gin.Context, dto dtos.UserSignUpRequest) (res interface{}, err er
 	}
 
 	res, _ = shared.StructToMap(responseObj)
-
 	return res, nil
 }
 
-func Login(context *gin.Context) {
-	fmt.Println("Login Service")
+func Login(context *gin.Context, dto dtos.UserLoginRequest) (interface{}, error) {
+	var user models.User
+	if err := db.DB.Model(&models.User{}).Where(dto).First(&user).Error; err != nil {
+		return nil, err
+	}
+
+	responseObj := dtos.UserSignUpResponse{
+		Token: GenerateToken(int(user.ID)),
+		UserInfo: dtos.UserInfoResponse{
+			ID:     int(user.ID),
+			Name:   user.Name,
+			Avatar: nil,
+			Rating: user.Rating,
+		},
+	}
+
+	res, _ := shared.StructToMap(responseObj)
+	return res, nil
 }

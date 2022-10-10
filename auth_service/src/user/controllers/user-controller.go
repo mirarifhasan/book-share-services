@@ -40,3 +40,31 @@ func SignUp() gin.HandlerFunc {
 		c.JSON(http.StatusCreated, interceptors.BuildResponse("SignUp success", data))
 	}
 }
+
+// User Login
+// @Summary  Login a user
+// @Schemes
+// @Description  Login a user
+// @Tags         Auth
+// @Accept       json
+// @Produce      json
+// @Param        request               body     dtos.UserLoginRequest  true  "User Login Request"
+// @Router       /login [post]
+func Login() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var dto dtos.UserLoginRequest
+
+		if err := c.ShouldBind(&dto); err != nil {
+			c.JSON(http.StatusBadRequest, interceptors.BuildErrorResponse("", err.Error(), nil))
+		}
+
+		data, err := services.Login(c, dto)
+
+		if err != nil {
+			c.JSON(http.StatusNotFound, interceptors.BuildErrorResponse("", err.Error(), nil))
+			return
+		}
+
+		c.JSON(http.StatusCreated, interceptors.BuildResponse("Login success", data))
+	}
+}

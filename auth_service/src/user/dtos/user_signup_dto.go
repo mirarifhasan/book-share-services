@@ -10,6 +10,14 @@ type UserSignUpRequest struct {
 	Password string `form:"password" json:"password" xml:"password"  binding:"required"`
 }
 
+// swagger:parameters UserLoginRequest
+type UserLoginRequest struct {
+	// required: true
+	Phone string `form:"phone" json:"phone" xml:"phone" binding:"required"`
+	// required: true
+	Password string `form:"password" json:"password" xml:"password"  binding:"required"`
+}
+
 type UserInfoResponse struct {
 	ID     int    `form:"id" json:"id" xml:"id"`
 	Name   string `form:"name" json:"name" xml:"name"`

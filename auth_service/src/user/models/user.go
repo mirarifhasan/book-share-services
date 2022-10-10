@@ -15,10 +15,10 @@ import (
 type User struct {
 	gorm.Model
 	Name           string    `json:"name"`
-	Phone          string    `json:"phone"`
+	Phone          string    `json:"phone" gorm:"type:varchar(100);uniqueIndex;not null"`
 	Email          string    `json:"email"`
 	Password       string    `json:"password"`
-	Avatar         string    `json:"avater"`
+	Avatar         string    `json:"avatar"`
 	Rating         uint      `json:"rating"`
 	Address        string    `json:"address"`
 	IpAddress      string    `json:"ip_address"`

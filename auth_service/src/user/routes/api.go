@@ -10,6 +10,6 @@ func UserRouteSetup(router *gin.Engine) {
 
 	v1 := router.Group("api/v1")
 	v1.POST("/signup", c.SignUp())
-	v1.POST("/login", c.SignUp())
+	v1.POST("/login", c.Login())
 
 }
