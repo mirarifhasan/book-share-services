@@ -52,6 +52,23 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "dtos.UserInfoResponse": {
+            "type": "object",
+            "properties": {
+                "avatar": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "integer"
+                }
+            }
+        },
         "dtos.UserSignUpRequest": {
             "type": "object",
             "required": [
@@ -76,13 +93,12 @@ const docTemplate = `{
         },
         "dtos.UserSignUpResponse": {
             "type": "object",
-            "required": [
-                "token"
-            ],
             "properties": {
                 "token": {
-                    "description": "required: true",
                     "type": "string"
+                },
+                "user_info": {
+                    "$ref": "#/definitions/dtos.UserInfoResponse"
                 }
             }
         }

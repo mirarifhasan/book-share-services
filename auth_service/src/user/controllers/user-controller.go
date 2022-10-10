@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"auth_service/src/shared/interceptors"
 	"auth_service/src/user/dtos"
 	"auth_service/src/user/services"
 	"fmt"
@@ -26,16 +27,16 @@ func SignUp() gin.HandlerFunc {
 		var dto dtos.UserSignUpRequest
 
 		if err := c.ShouldBind(&dto); err != nil {
-			c.AbortWithError(http.StatusBadRequest, err)
+			c.JSON(http.StatusBadRequest, interceptors.BuildErrorResponse("", err.Error(), nil))
 		}
 
-		res, err := services.SignUp(c, dto)
+		data, err := services.SignUp(c, dto)
 
 		if err != nil {
-			c.AbortWithError(http.StatusForbidden, err)
+			c.JSON(http.StatusForbidden, interceptors.BuildErrorResponse("", err.Error(), nil))
 			return
 		}
 
-		c.JSON(http.StatusCreated, res)
+		c.JSON(http.StatusCreated, interceptors.BuildResponse("SignUp success", data))
 	}
 }

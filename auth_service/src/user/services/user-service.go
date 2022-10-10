@@ -5,10 +5,8 @@ import (
 	shared "auth_service/src/shared"
 	"auth_service/src/user/dtos"
 	"auth_service/src/user/models"
-	// "encoding/json"
 	"errors"
 	"fmt"
-	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -19,24 +17,31 @@ func SignUp(c *gin.Context, dto dtos.UserSignUpRequest) (res interface{}, err er
 	db.DB.Model(&models.User{}).Where(map[string]interface{}{"phone": dto.Phone}).Find(&existUsers)
 
 	if len(existUsers) != 0 {
-		c.AbortWithStatusJSON(http.StatusForbidden, gin.H{"error": "phone already exist"})
 		return nil, errors.New("phone already exist")
 	}
 
-	var newUser *models.User = new(models.User)
-	newUser.Name = dto.Name
-	newUser.Phone = dto.Phone
-	newUser.Password = dto.Password
-	newUser.LastActiveTime = time.Now()
+	newUser := models.User{
+		Name:           dto.Name,
+		Phone:          dto.Phone,
+		Password:       dto.Password,
+		LastActiveTime: time.Now(),
+	}
 
 	if err := db.DB.Create(&newUser).Error; err != nil {
 		return nil, err
 	}
 
-	var responseData dtos.UserSignUpResponse
-	responseData.Token = "abc"
+	responseObj := dtos.UserSignUpResponse{
+		Token: GenerateToken(int(newUser.ID)),
+		UserInfo: dtos.UserInfoResponse{
+			ID:     int(newUser.ID),
+			Name:   newUser.Name,
+			Avatar: nil,
+			Rating: newUser.Rating,
+		},
+	}
 
-	res, _ = shared.StructToMap(responseData)
+	res, _ = shared.StructToMap(responseObj)
 
 	return res, nil
 }

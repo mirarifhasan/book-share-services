@@ -1,5 +1,16 @@
 basePath: /api/v1
 definitions:
+  dtos.UserInfoResponse:
+    properties:
+      avatar:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      rating:
+        type: integer
+    type: object
   dtos.UserSignUpRequest:
     properties:
       name:
@@ -19,10 +30,9 @@ definitions:
   dtos.UserSignUpResponse:
     properties:
       token:
-        description: 'required: true'
         type: string
-    required:
-    - token
+      user_info:
+        $ref: '#/definitions/dtos.UserInfoResponse'
     type: object
 info:
   contact: {}

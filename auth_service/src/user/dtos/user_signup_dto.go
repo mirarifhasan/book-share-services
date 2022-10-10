@@ -10,9 +10,15 @@ type UserSignUpRequest struct {
 	Password string `form:"password" json:"password" xml:"password"  binding:"required"`
 }
 
+type UserInfoResponse struct {
+	ID     int    `form:"id" json:"id" xml:"id"`
+	Name   string `form:"name" json:"name" xml:"name"`
+	Avatar *string `form:"avatar" json:"avatar" xml:"avatar"`
+	Rating uint   `form:"rating" json:"rating" xml:"rating"`
+}
+
 // swagger:parameters UserSignUpResponse
 type UserSignUpResponse struct {
-	// required: true
-	Token string `form:"token" json:"token" xml:"token" binding:"required"`
-	
+	Token    string           `form:"token" json:"token" xml:"token"`
+	UserInfo UserInfoResponse `form:"user_info" json:"user_info" xml:"user_info"`
 }
