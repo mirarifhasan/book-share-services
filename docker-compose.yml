@@ -1,17 +1,15 @@
 version: "3"
 services:
-  mysql-database:
+  mysql_database:
     image: mysql
-    container_name: mysql-db
+    container_name: mysql_database
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: password
-      # MYSQL_DATABASE: catering
-      # MYSQL_USER: root
     ports:
-      - 3306:3306
+      - 3009:3306
     expose:
-      - 3306
+      - 3009
     volumes:
       - .data:/var/lib/mysql
 
@@ -20,13 +18,13 @@ services:
     container_name: phpmyadmin
     restart: unless-stopped
     depends_on:
-      - mysql-database
+      - mysql_database
     environment:
-      PMA_HOST: mysql-database
+      PMA_HOST: mysql_database
     ports:
-      - 8080:80
+      - 3010:80
     expose:
-      - 8080
+      - 3010
 
   auth_service:
     build:
@@ -36,10 +34,20 @@ services:
     env_file:
       - auth_service/.env
     environment:
-      - PORT=3000
-      - DB_HOST=mysql-database
+      - PORT=3011
+      - DB_HOST_PORT=mysql_database
     depends_on:
-      - mysql-database
+      - mysql_database
       - phpmyadmin
     ports:
-      - 3000:3000
+      - 3011:3011
+
+
+# 3009: Database Server (MySql)
+# 3010: PhpMyAdmin
+
+# 3011: Auth Service
+# 3012: Product Service
+# 3013: Cart Service
+# 3014: Order Service
+# 3015: Payment Service

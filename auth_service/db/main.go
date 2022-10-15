@@ -17,7 +17,7 @@ import (
 var DB *gorm.DB
 
 func ConnectToDB() {
-	dsn := configs.GetEnv().DbUsername + ":" + configs.GetEnv().DbPassword + "@tcp(" + configs.GetEnv().DbHost + ":" + configs.GetEnv().DbPort + ")/"
+	dsn := configs.GetEnv().DbUsername + ":" + configs.GetEnv().DbPassword + "@tcp(" + configs.GetEnv().DbHostPort + ")/"
 	fmt.Println("dsn: ", dsn)
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
@@ -31,6 +31,7 @@ func ConnectToDB() {
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		fmt.Println("Error in DB connection:", err)
+		panic(err)
 	}
 
 	DB = db

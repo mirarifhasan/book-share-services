@@ -19,8 +19,7 @@ type EnvVariables struct {
 
 	DbUsername string `default:"root"`
 	DbPassword string `default:"password"`
-	DbHost     string `default:"localhost"`
-	DbPort     string `default:"3306"`
+	DbHostPort string `default:"localhost:3306"`
 	DbName     string `default:"auth_db_name"`
 
 	AuthServiceBaseUrl string `default:"http://localhost:3000"`
@@ -38,8 +37,7 @@ func initEnvVariable() {
 
 		DbUsername: os.Getenv("DB_USERNAME"),
 		DbPassword: os.Getenv("DB_PASSWORD"),
-		DbHost:     os.Getenv("DB_HOST"),
-		DbPort:     os.Getenv("DB_PORT"),
+		DbHostPort: os.Getenv("DB_HOST_PORT"),
 		DbName:     os.Getenv("DB_NAME"),
 
 		AuthServiceBaseUrl: os.Getenv("AUTH_SERVICE_BASE_URL"),
