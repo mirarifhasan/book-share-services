@@ -13,9 +13,9 @@ services:
     volumes:
       - .data:/var/lib/mysql
 
-  phpmyadmin:
+  phpmyadmin_v2:
     image: phpmyadmin
-    container_name: phpmyadmin
+    container_name: phpmyadmin_v2
     restart: unless-stopped
     depends_on:
       - mysql_database
@@ -38,13 +38,13 @@ services:
       - DB_HOST_PORT=mysql_database
     depends_on:
       - mysql_database
-      - phpmyadmin
+      - phpmyadmin_v2
     ports:
       - 3011:3011
 
 
 # 3009: Database Server (MySql)
-# 3010: PhpMyAdmin
+# 3010: phpmyadmin_v2
 
 # 3011: Auth Service
 # 3012: Product Service
