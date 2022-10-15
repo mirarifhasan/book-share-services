@@ -17,7 +17,7 @@ import (
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	
+
 	"github.com/ghodss/yaml"
 )
 
@@ -33,7 +33,7 @@ func Register() *gin.Engine {
 	swaggerRoute(router)
 	routes.UserRouteSetup(router)
 
-	router.Run(configs.GetEnv().Port)
+	router.Run("localhost:" + configs.GetEnv().Port)
 	return router
 }
 
@@ -77,7 +77,7 @@ func swaggerRoute(router *gin.Engine) {
 		appUrl = strings.Replace(appUrl, "http://", "", -1)
 		data["host"] = appUrl
 
-		c.JSON(200,data)
+		c.JSON(200, data)
 		// Res.
 		// 	Raw(data).
 		// 	Yaml(c)

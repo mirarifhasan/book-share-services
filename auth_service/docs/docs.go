@@ -40,7 +40,26 @@ const docTemplate = `{
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/interceptors.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dtos.UserSignUpResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
             }
         },
         "/signup": {
@@ -71,7 +90,19 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/dtos.UserSignUpResponse"
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/interceptors.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dtos.UserSignUpResponse"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
                 }
@@ -143,6 +174,21 @@ const docTemplate = `{
                 },
                 "user_info": {
                     "$ref": "#/definitions/dtos.UserInfoResponse"
+                }
+            }
+        },
+        "interceptors.Response": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "message": {
+                    "type": "string"
                 }
             }
         }

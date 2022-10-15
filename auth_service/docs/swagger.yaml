@@ -46,6 +46,16 @@ definitions:
       user_info:
         $ref: '#/definitions/dtos.UserInfoResponse'
     type: object
+  interceptors.Response:
+    properties:
+      data: {}
+      errors:
+        items:
+          type: string
+        type: array
+      message:
+        type: string
+    type: object
 info:
   contact: {}
   description: API Documentation
@@ -66,7 +76,16 @@ paths:
           $ref: '#/definitions/dtos.UserLoginRequest'
       produces:
       - application/json
-      responses: {}
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/interceptors.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dtos.UserSignUpResponse'
+              type: object
       summary: Login a user
       tags:
       - Auth
@@ -88,7 +107,12 @@ paths:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/dtos.UserSignUpResponse'
+            allOf:
+            - $ref: '#/definitions/interceptors.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/dtos.UserSignUpResponse'
+              type: object
       summary: SignUp a user
       tags:
       - Auth

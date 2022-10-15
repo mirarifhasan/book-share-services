@@ -4,14 +4,14 @@ import "strings"
 
 type Response struct {
 	Message string      `json:"message"`
-	Errors  interface{} `json:"errors"`
+	Errors  []string    `json:"errors"`
 	Data    interface{} `json:"data"`
 }
 
 type EmptyObj struct {
 }
 
-func BuildResponse( message string, data interface{}) Response {
+func BuildResponse(message string, data interface{}) Response {
 	return Response{
 		Message: message,
 		Errors:  nil,

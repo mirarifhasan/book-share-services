@@ -7,27 +7,41 @@
 package configs
 
 import (
-	"github.com/joho/godotenv"
+	"fmt"
 	"log"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 type EnvVariables struct {
-	Port               string `default:""`
-	DBConstraints      string `default:""`
-	AuthServiceBaseUrl string `default:""`
+	Port string `default:"3000"`
+
+	DbUsername string `default:"root"`
+	DbPassword string `default:"password"`
+	DbHost     string `default:"localhost"`
+	DbPort     string `default:"3306"`
+	DbName     string `default:"auth_db_name"`
+
+	AuthServiceBaseUrl string `default:"http://localhost:3000"`
 }
 
 var env *EnvVariables
 
 func initEnvVariable() {
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file")
+	if err := godotenv.Load(".env"); err != nil {
+		fmt.Println("Error loading .env file")
 	}
 
 	env = &EnvVariables{
-		Port:               os.Getenv("PORT"),
-		DBConstraints:      os.Getenv("DB_CONSTRAINTS"),
+		Port: os.Getenv("PORT"),
+
+		DbUsername: os.Getenv("DB_USERNAME"),
+		DbPassword: os.Getenv("DB_PASSWORD"),
+		DbHost:     os.Getenv("DB_HOST"),
+		DbPort:     os.Getenv("DB_PORT"),
+		DbName:     os.Getenv("DB_NAME"),
+
 		AuthServiceBaseUrl: os.Getenv("AUTH_SERVICE_BASE_URL"),
 	}
 }
