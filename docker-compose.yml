@@ -34,21 +34,21 @@ services:
     env_file:
       - auth_service/.env
     environment:
-      - PORT=4200
+      - PORT=3011
       - DB_HOST_PORT=mysql_database
     depends_on:
       - mysql_database
       - phpmyadmin_v2
     ports:
-      - '4200:4200'
+      - '3011:3011'
     expose:
-      - '4200'
+      - '3011'
 
 
 # 3009: Database Server (MySql)
 # 3010: phpmyadmin_v2
 
-# 30011: Auth Service
+# 3011: Auth Service
 # 3012: Product Service
 # 3013: Cart Service
 # 3014: Order Service
