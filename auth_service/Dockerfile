@@ -34,6 +34,6 @@ WORKDIR /api
 COPY --from=builder /api/docs ./docs
 COPY --from=builder /api/app .
 
-EXPOSE 8081
+# EXPOSE 30011
 
 ENTRYPOINT ["./app"]

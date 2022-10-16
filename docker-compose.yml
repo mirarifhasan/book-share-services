@@ -9,7 +9,7 @@ services:
     ports:
       - 3009:3306
     expose:
-      - 3009
+      - 3306
     volumes:
       - .data:/var/lib/mysql
 
@@ -24,29 +24,31 @@ services:
     ports:
       - 3010:80
     expose:
-      - 3010
+      - 80
 
   auth_service:
-    build:
-      context: auth_service/.
-      dockerfile: Dockerfile
-    restart: unless-stopped
+    build: auth_service/.
+      # context: auth_service/.
+      # dockerfile: Dockerfile
+    restart: always
     env_file:
       - auth_service/.env
     environment:
-      - PORT=3011
+      - PORT=4200
       - DB_HOST_PORT=mysql_database
     depends_on:
       - mysql_database
       - phpmyadmin_v2
     ports:
-      - 3011:3011
+      - '4200:4200'
+    expose:
+      - '4200'
 
 
 # 3009: Database Server (MySql)
 # 3010: phpmyadmin_v2
 
-# 3011: Auth Service
+# 30011: Auth Service
 # 3012: Product Service
 # 3013: Cart Service
 # 3014: Order Service

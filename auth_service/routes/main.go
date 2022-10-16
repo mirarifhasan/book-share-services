@@ -33,7 +33,7 @@ func Register() *gin.Engine {
 	swaggerRoute(router)
 	routes.UserRouteSetup(router)
 
-	router.Run("localhost:" + configs.GetEnv().Port)
+	router.Run(":" + configs.GetEnv().Port)
 	return router
 }
 
