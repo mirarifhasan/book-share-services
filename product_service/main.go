@@ -19,7 +19,7 @@ func main() {
 	fmt.Println("Product Service starting")
 
 	db.ConnectToDB()
-	db.DB.AutoMigrate(models.Product{})
+	db.DB.AutoMigrate(models.Category{}, models.Product{})
 
 	routes.Register()
 }
