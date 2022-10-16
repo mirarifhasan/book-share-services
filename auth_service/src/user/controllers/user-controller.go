@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// UserSignUp
+// SignUp
 // @Summary  SignUp a user
 // @Schemes
 // @Description  SignUp a user for the first time
@@ -41,7 +41,7 @@ func SignUp() gin.HandlerFunc {
 	}
 }
 
-// User Login
+// Login
 // @Summary  Login a user
 // @Schemes
 // @Description  Login a user

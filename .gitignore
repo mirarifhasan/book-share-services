@@ -1,7 +1,8 @@
 .idea
 .data
+.DS_Store
 
-**/*.env
+#**/*.env
 */tmp
 /tmp
 **/auth_service/.env
