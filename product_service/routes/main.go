@@ -11,6 +11,7 @@ import (
 	"io/ioutil"
 	"os"
 	"product_service/configs"
+	"product_service/src/product/routes"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -30,6 +31,8 @@ func Register() *gin.Engine {
 	})
 
 	swaggerRoute(router)
+	routes.ProductRouteSetup(router)
+
 
 	router.Run(":" + configs.GetEnv().Port)
 	return router
