@@ -4,15 +4,14 @@ import (
 	"fmt"
 	"net/http"
 
-	sharedDtos "product_service/src/shared/dtos"
-	"product_service/src/product/services"
-	"product_service/src/product/dtos"
 	"github.com/gin-gonic/gin"
+	"product_service/src/product/dtos"
+	"product_service/src/product/services"
+	sharedDtos "product_service/src/shared/dtos"
 )
 
 func CreateCategory() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		fmt.Println("Hi")
 
 		var dto dtos.CrateCategoryRequest
 
@@ -25,7 +24,7 @@ func CreateCategory() gin.HandlerFunc {
 			c.JSON(http.StatusForbidden, sharedDtos.BuildErrorResponse("", err.Error(), nil))
 			return
 		}
-		
+
 		c.JSON(http.StatusCreated, sharedDtos.BuildResponse("SignUp success", data))
 
 	}
