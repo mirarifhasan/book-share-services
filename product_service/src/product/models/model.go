@@ -12,7 +12,7 @@ import (
 
 type Category struct {
 	gorm.Model
-	Name      string `json:"name"`
+	Name      string `json:"name" gorm:"uniqueIndex"`
 	Thumbnail string `json:"thumbnail"`
 	IsActive  bool   `json:"is_active"`
 	// Product   []Product `gorm:"foreignKey:ID"`
