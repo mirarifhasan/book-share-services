@@ -32,7 +32,19 @@ func CreateCategory() gin.HandlerFunc {
 
 func GetCategories() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		fmt.Println("Hi")
+
+		dto := map[string]interface{}{
+			"is_active": c.DefaultQuery("is_active", ""),
+		}
+
+		data, err := services.GetCategories(dto)
+		if err != nil {
+			c.JSON(http.StatusForbidden, sharedDtos.BuildErrorResponse("", err.Error(), nil))
+			return
+		}
+
+		c.JSON(http.StatusCreated, sharedDtos.BuildResponse("", data))
+
 	}
 }
 

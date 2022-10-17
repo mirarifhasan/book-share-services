@@ -1,6 +1,7 @@
 package services
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"product_service/db"
 	"product_service/src/product/dtos"
@@ -22,4 +23,10 @@ func CreateACategory(c *gin.Context, dto dtos.CrateCategoryRequest) (interface{}
 
 	res, _ := shared.StructToMap(newCat)
 	return res, nil
+}
+
+func GetCategories(dto map[string]interface{}) (interface{}, error) {
+	fmt.Println("dto", dto)
+
+	return nil, nil
 }
