@@ -11,3 +11,9 @@ type CrateCategoryRequest struct {
 	// required: false
 	OrderIdx bool `form:"order_idx" json:"order_idx" xml:"order_idx"`
 }
+
+// swagger:parameters GetCategoriesQuery
+type GetCategoriesQuery struct {
+	// required: false
+	IsActive string `json:"is_active" form:"is_active"`
+}

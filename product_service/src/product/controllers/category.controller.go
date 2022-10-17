@@ -17,6 +17,7 @@ func CreateCategory() gin.HandlerFunc {
 
 		if err := c.ShouldBind(&dto); err != nil {
 			c.JSON(http.StatusBadRequest, sharedDtos.BuildErrorResponse("", err.Error(), nil))
+			return
 		}
 
 		data, err := services.CreateACategory(c, dto)
@@ -32,24 +33,24 @@ func CreateCategory() gin.HandlerFunc {
 
 func GetCategories() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		var query dtos.GetCategoriesQuery
 
-		dto := map[string]interface{}{
-			"is_active": c.DefaultQuery("is_active", ""),
+		if err := c.Bind(&query); err != nil {
+			c.JSON(http.StatusBadRequest, sharedDtos.BuildErrorResponse("", err.Error(), nil))
+			return
 		}
 
-		data, err := services.GetCategories(dto)
+		fmt.Println("query", query)
+
+		data, err := services.GetCategories(query)
 		if err != nil {
 			c.JSON(http.StatusForbidden, sharedDtos.BuildErrorResponse("", err.Error(), nil))
 			return
 		}
 
-		c.JSON(http.StatusCreated, sharedDtos.BuildResponse("", data))
+		fmt.Println(data)
 
-	}
-}
+		c.JSON(http.StatusOK, sharedDtos.BuildResponse("", data))
 
-func GetACategory() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		fmt.Println("Hi")
 	}
 }

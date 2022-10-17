@@ -15,7 +15,7 @@ type UserLoginRequest struct {
 	// required: true
 	Phone string `form:"phone" json:"phone" xml:"phone" binding:"required"`
 	// required: true
-	Password string `form:"password" json:"password" xml:"password"  binding:"required"`
+	Password string `form:"password" json:"password" xml:"password" binding:"required"`
 }
 
 type UserInfoResponse struct {

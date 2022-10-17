@@ -12,7 +12,6 @@ func ProductRouteSetup(router *gin.Engine) {
 
 	v1.POST("/categories", c.CreateCategory())
 	v1.GET("/categories", c.GetCategories())
-	v1.GET("/categories/:id", c.GetACategory())
 
 	v1.POST("/products", c.CreateProduct())
 	v1.GET("/products", c.GetProducts())
