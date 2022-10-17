@@ -12,8 +12,9 @@ import (
 
 type Category struct {
 	gorm.Model
-	Name      string `json:"name" gorm:"uniqueIndex"`
+	Name      string `json:"name" gorm:"size:50;uniqueIndex"`
 	Thumbnail string `json:"thumbnail"`
+	OrderIdx  int    `json:"order_idx" gorm:"default:0;"`
 	IsActive  bool   `json:"is_active"`
 	// Product   []Product `gorm:"foreignKey:ID"`
 }

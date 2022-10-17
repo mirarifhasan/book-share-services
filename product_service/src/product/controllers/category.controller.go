@@ -25,7 +25,7 @@ func CreateCategory() gin.HandlerFunc {
 			return
 		}
 
-		c.JSON(http.StatusCreated, sharedDtos.BuildResponse("SignUp success", data))
+		c.JSON(http.StatusCreated, sharedDtos.BuildResponse("", data))
 
 	}
 }
