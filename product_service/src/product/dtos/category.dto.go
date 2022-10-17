@@ -9,7 +9,7 @@ type CrateCategoryRequest struct {
 	// required: true
 	IsActive bool `form:"is_active" json:"is_active" xml:"is_active"  binding:"required"`
 	// required: false
-	OrderIdx bool `form:"order_idx" json:"order_idx" xml:"order_idx"`
+	OrderIdx int `form:"order_idx" json:"order_idx" xml:"order_idx"`
 }
 
 // swagger:parameters GetCategoriesQuery
