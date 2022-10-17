@@ -28,8 +28,6 @@ services:
 
   auth_service:
     build: auth_service/.
-      # context: auth_service/.
-      # dockerfile: Dockerfile
     restart: always
     env_file:
       - auth_service/.env
@@ -43,6 +41,22 @@ services:
       - '3011:3011'
     expose:
       - '3011'
+
+  product_service:
+    build: product_service/.
+    restart: always
+    env_file:
+      - product_service/.env
+    environment:
+      - PORT=3012
+      - DB_HOST_PORT=mysql_database
+    depends_on:
+      - mysql_database
+      - phpmyadmin_v2
+    ports:
+      - '3012:3012'
+    expose:
+      - '3012'
 
 
 # 3009: Database Server (MySql)
