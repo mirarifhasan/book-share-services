@@ -19,8 +19,8 @@ type Category struct {
 	Thumbnail string    `json:"thumbnail"`
 	OrderIdx  int       `json:"order_idx" gorm:"default:0;"`
 	IsActive  bool      `json:"is_active"`
-	CreatedAt time.Time `json:"created_at" gorm:"autoCreateTime"`
-	UpdatedAt time.Time `json:"updated_at" gorm:"autoUpdateTime`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 	DeletedAt gorm.DeletedAt `json:"deleted_at"`
 	// Product   []Product `gorm:"foreignKey:ID"`
 }
