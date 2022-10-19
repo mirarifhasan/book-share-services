@@ -49,10 +49,22 @@ func GetProducts(c *gin.Context, query dtos.GetProductsQuery) (interface{}, erro
 		queryBuilder = queryBuilder.Where("name LIKE ?", "%"+query.Name+"%")
 	}
 	if len(query.CategoryID) > 0 {
-		queryBuilder.Where(map[string]interface{}{"category_id":query.CategoryID})
+		queryBuilder.Where(map[string]interface{}{"category_id": query.CategoryID})
 	}
 
 	queryBuilder.Find(&products)
 
 	return products, nil
+
+}
+
+func GetAProduct(id int) (interface{}, error) {
+
+	var product models.Product
+	if err := db.DB.Model(&models.Product{}).Where(map[string]interface{}{"id": id}).First(&product).Error; err != nil {
+		return nil, err
+	}
+
+	return product, nil
+
 }

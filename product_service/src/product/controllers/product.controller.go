@@ -1,11 +1,11 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 	"product_service/src/product/dtos"
 	"product_service/src/product/services"
 	sharedDtos "product_service/src/shared/dtos"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -26,7 +26,7 @@ func CreateProduct() gin.HandlerFunc {
 			return
 		}
 
-		c.JSON(http.StatusCreated, sharedDtos.BuildResponse("", data))
+		c.JSON(http.StatusOK, sharedDtos.BuildResponse("", data))
 
 	}
 }
@@ -53,6 +53,19 @@ func GetProducts() gin.HandlerFunc {
 
 func GetAProduct() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		fmt.Println("Hi")
+
+		id, err := strconv.Atoi(c.Param("id"))
+		if err != nil {
+			c.JSON(http.StatusBadRequest, sharedDtos.BuildErrorResponse("", "id not found or invalid", nil))
+			return
+		}
+
+		data, err := services.GetAProduct(id)
+		if err != nil {
+			c.JSON(http.StatusForbidden, sharedDtos.BuildErrorResponse("", err.Error(), nil))
+			return
+		}
+
+		c.JSON(http.StatusCreated, sharedDtos.BuildResponse("", data))
 	}
 }
