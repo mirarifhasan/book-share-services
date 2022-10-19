@@ -17,3 +17,11 @@ type CreateProductRequest struct {
 	// required: true
 	CategoryID int `form:"category_id" json:"category_id" xml:"category_id"  binding:"required"`
 }
+
+// swagger:parameters GetProductsQuery
+type GetProductsQuery struct {
+	// required: false
+	Name string `json:"name" form:"name"`
+	// required: false
+	CategoryID string `json:"category_id" form:"category_id"`
+}

@@ -2,6 +2,7 @@ package services
 
 import (
 	"errors"
+	"fmt"
 	"product_service/db"
 	"product_service/src/product/dtos"
 	"product_service/src/product/models"
@@ -35,4 +36,23 @@ func CreateAProduct(c *gin.Context, dto dtos.CreateProductRequest) (interface{},
 	}
 
 	return shared.StructToMap(newProd), nil
+}
+
+func GetProducts(c *gin.Context, query dtos.GetProductsQuery) (interface{}, error) {
+
+	fmt.Println(query)
+
+	var products []models.Product
+	queryBuilder := db.DB.Model(&models.Product{})
+
+	if len(query.Name) > 0 {
+		queryBuilder = queryBuilder.Where("name LIKE ?", "%"+query.Name+"%")
+	}
+	if len(query.CategoryID) > 0 {
+		queryBuilder.Where(map[string]interface{}{"category_id":query.CategoryID})
+	}
+
+	queryBuilder.Find(&products)
+
+	return products, nil
 }

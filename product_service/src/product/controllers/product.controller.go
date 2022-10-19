@@ -33,7 +33,21 @@ func CreateProduct() gin.HandlerFunc {
 
 func GetProducts() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		fmt.Println("Hi")
+		var query dtos.GetProductsQuery
+
+		if err := c.Bind(&query); err != nil {
+			c.JSON(http.StatusBadRequest, sharedDtos.BuildErrorResponse("", err.Error(), nil))
+			return
+		}
+
+		data, err := services.GetProducts(c, query)
+		if err != nil {
+			c.JSON(http.StatusForbidden, sharedDtos.BuildErrorResponse("", err.Error(), nil))
+			return
+		}
+
+		c.JSON(http.StatusCreated, sharedDtos.BuildResponse("", data))
+
 	}
 }
 
