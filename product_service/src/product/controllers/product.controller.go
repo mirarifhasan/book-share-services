@@ -10,6 +10,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// CreateProduct
+// @Summary  create new product
+// @Schemes
+// @Description  create new product
+// @Tags         Products
+// @Accept       json
+// @Produce      json
+// @Param        request               body     dtos.CreateProductRequest  true  "Create Product Request"
+// @Success      201
+// @Router       /products [post]
 func CreateProduct() gin.HandlerFunc {
 	return func(c *gin.Context) {
 

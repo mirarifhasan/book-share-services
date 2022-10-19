@@ -73,7 +73,7 @@ func swaggerRoute(router *gin.Engine) {
 		if err != nil {
 			panic(err)
 		}
-		appUrl := configs.GetEnv().AuthServiceBaseUrl
+		appUrl := configs.GetEnv().ProductServiceBaseUrl
 		appUrl = strings.Replace(appUrl, "https://", "", -1)
 		appUrl = strings.Replace(appUrl, "http://", "", -1)
 		data["host"] = appUrl
@@ -84,5 +84,5 @@ func swaggerRoute(router *gin.Engine) {
 		// 	Yaml(c)
 	})
 
-	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, ginSwagger.URL(configs.GetEnv().AuthServiceBaseUrl+"/swagger/swagger.yaml"), ginSwagger.DefaultModelsExpandDepth(-1)))
+	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, ginSwagger.URL(configs.GetEnv().ProductServiceBaseUrl+"/swagger/swagger.yaml"), ginSwagger.DefaultModelsExpandDepth(-1)))
 }

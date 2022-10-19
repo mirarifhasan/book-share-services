@@ -7,5 +7,80 @@
         "version": "1.0"
     },
     "basePath": "/api/v1",
-    "paths": {}
+    "paths": {
+        "/products": {
+            "post": {
+                "description": "create new product",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Products"
+                ],
+                "summary": "create new product",
+                "parameters": [
+                    {
+                        "description": "Create Product Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dtos.CreateProductRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dtos.CreateProductRequest": {
+            "type": "object",
+            "required": [
+                "category_id",
+                "condition",
+                "description",
+                "name",
+                "price",
+                "selling_by"
+            ],
+            "properties": {
+                "category_id": {
+                    "description": "required: true",
+                    "type": "integer"
+                },
+                "condition": {
+                    "description": "required: true",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "required: true",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "required: true",
+                    "type": "string"
+                },
+                "price": {
+                    "description": "required: true",
+                    "type": "number"
+                },
+                "selling_by": {
+                    "description": "required: true",
+                    "type": "integer"
+                },
+                "thumbnail": {
+                    "description": "required: false",
+                    "type": "string"
+                }
+            }
+        }
+    }
 }
