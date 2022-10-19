@@ -1,11 +1,12 @@
 package services
 
 import (
-	"github.com/gin-gonic/gin"
 	"product_service/db"
 	"product_service/src/product/dtos"
 	"product_service/src/product/models"
 	shared "product_service/src/shared"
+
+	"github.com/gin-gonic/gin"
 
 	"gorm.io/gorm"
 )
@@ -38,7 +39,7 @@ func GetCategories(query dtos.GetCategoriesQuery) (interface{}, error) {
 	var dbRes *gorm.DB
 
 	if len(filterQuery) > 0 {
-		dbRes = db.DB.Model(&models.Category{}).Where(filterQuery).Find(&categories)
+		dbRes = db.DB.Model(&models.Category{}).Where(filterQuery).Preload("Product").Find(&categories)
 	} else {
 		dbRes = db.DB.Model(&models.Category{}).Find(&categories)
 	}
