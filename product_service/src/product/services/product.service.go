@@ -52,7 +52,7 @@ func GetProducts(c *gin.Context, query dtos.GetProductsQuery) (interface{}, erro
 		queryBuilder.Where(map[string]interface{}{"category_id": query.CategoryID})
 	}
 
-	queryBuilder.Find(&products)
+	queryBuilder.Preload("Category").Find(&products)
 
 	return products, nil
 
@@ -61,7 +61,7 @@ func GetProducts(c *gin.Context, query dtos.GetProductsQuery) (interface{}, erro
 func GetAProduct(id int) (interface{}, error) {
 
 	var product models.Product
-	if err := db.DB.Model(&models.Product{}).Where(map[string]interface{}{"id": id}).First(&product).Error; err != nil {
+	if err := db.DB.Model(&models.Product{}).Where(map[string]interface{}{"id": id}).Preload("Category").First(&product).Error; err != nil {
 		return nil, err
 	}
 

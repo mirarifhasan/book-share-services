@@ -30,6 +30,8 @@ type Product struct {
 	ID          uint           `json:"id" gorm:"primarykey"`
 	Name        string         `json:"name"`
 	Thumbnail   string         `json:"thumbnail"`
+	Edition     string         `json:"edition"`
+	AuthorName  string         `json:"author_name"`
 	Description string         `json:"description"`
 	Price       float32        `json:"price"`
 	Condition   string         `json:"condition"`

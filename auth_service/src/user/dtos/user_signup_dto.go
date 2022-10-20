@@ -8,6 +8,8 @@ type UserSignUpRequest struct {
 	Phone string `form:"phone" json:"phone" xml:"phone" binding:"required"`
 	// required: true
 	Password string `form:"password" json:"password" xml:"password"  binding:"required"`
+	// required: false
+	IpAddress string `form:"ip_address" json:"ip_address" xml:"ip_address"`
 }
 
 // swagger:parameters UserLoginRequest
@@ -16,6 +18,8 @@ type UserLoginRequest struct {
 	Phone string `form:"phone" json:"phone" xml:"phone" binding:"required"`
 	// required: true
 	Password string `form:"password" json:"password" xml:"password" binding:"required"`
+	// required: false
+	IpAddress string `form:"ip_address" json:"ip_address" xml:"ip_address"`
 }
 
 type UserInfoResponse struct {
