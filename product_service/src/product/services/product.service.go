@@ -23,6 +23,8 @@ func CreateAProduct(c *gin.Context, dto dtos.CreateProductRequest) (interface{},
 	newProd := models.Product{
 		Name:        dto.Name,
 		Thumbnail:   dto.Thumbnail,
+		Edition:     dto.Edition,
+		AuthorName:  dto.AuthorName,
 		Description: dto.Description,
 		Price:       dto.Price,
 		Condition:   dto.Condition,
