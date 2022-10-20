@@ -39,7 +39,7 @@ func GetCategories(query dtos.GetCategoriesQuery) (interface{}, error) {
 	var dbRes *gorm.DB
 
 	if len(filterQuery) > 0 {
-		dbRes = db.DB.Model(&models.Category{}).Where(filterQuery).Preload("Product").Find(&categories)
+		dbRes = db.DB.Model(&models.Category{}).Where(filterQuery).Preload("Products").Find(&categories)
 	} else {
 		dbRes = db.DB.Model(&models.Category{}).Find(&categories)
 	}
