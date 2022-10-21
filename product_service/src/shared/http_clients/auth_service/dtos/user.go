@@ -1,10 +1,4 @@
-/*
- *  Copyright (c), Team Oneiro and/or its affiliates. All rights reserved.
- *  TO PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- */
-
-package models
+package dtos
 
 import (
 	"time"
@@ -13,10 +7,9 @@ import (
 )
 
 type User struct {
-	// gorm.Model
-	ID             uint           `json:"id" gorm:"primarykey"`
+	ID             uint           `json:"id" `
 	Name           string         `json:"name"`
-	Phone          string         `json:"phone" gorm:"type:varchar(100);uniqueIndex;not null"`
+	Phone          string         `json:"phone" `
 	Email          string         `json:"email"`
 	Password       string         `json:"password"`
 	Avatar         string         `json:"avatar"`

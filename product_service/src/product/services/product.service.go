@@ -1,12 +1,16 @@
 package services
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"product_service/db"
 	"product_service/src/product/dtos"
 	"product_service/src/product/models"
 	shared "product_service/src/shared"
+	auth_service "product_service/src/shared/http_clients/auth_service/services"
+
+	auth_service_dtos "product_service/src/shared/http_clients/auth_service/dtos"
 
 	"github.com/gin-gonic/gin"
 )
@@ -56,7 +60,38 @@ func GetProducts(c *gin.Context, query dtos.GetProductsQuery) (interface{}, erro
 
 	queryBuilder.Preload("Category").Find(&products)
 
-	return products, nil
+	userIds := []int{}
+	for _, v := range products {
+		userIds = append(userIds, v.SellingBy)
+	}
+
+	var users []auth_service_dtos.User
+	if len(userIds) > 0 {
+		respByte, _ := auth_service.GetUsersByIds(userIds)
+		var respJson map[string]interface{}
+		json.Unmarshal(respByte, &respJson)
+
+		usersByte, _ := json.Marshal(respJson["data"])
+		json.Unmarshal(usersByte, &users)
+	}
+
+	var productRes []models.ProductResponseDto
+	for _, p := range products {
+
+		pByte, _ := json.Marshal(p)
+		var newP models.ProductResponseDto
+		json.Unmarshal(pByte, &newP)
+
+		for _, u := range users {
+			if u.ID == uint(p.SellingBy) {
+				newP.Seller = shared.StructToMap(u)
+			}
+		}
+
+		productRes = append(productRes, newP)
+	}
+
+	return productRes, nil
 
 }
 

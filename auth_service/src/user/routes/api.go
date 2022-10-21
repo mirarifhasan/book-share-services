@@ -12,4 +12,7 @@ func UserRouteSetup(router *gin.Engine) {
 	v1.POST("/signup", c.SignUp())
 	v1.POST("/login", c.Login())
 
+	v2 := router.Group("api/v1/users")
+	v2.POST("", c.GetUsersByIds())
+
 }

@@ -36,7 +36,7 @@ func CreateProduct() gin.HandlerFunc {
 			return
 		}
 
-		c.JSON(http.StatusOK, sharedDtos.BuildResponse("", data))
+		c.JSON(http.StatusCreated, sharedDtos.BuildResponse("", data))
 
 	}
 }
@@ -56,7 +56,7 @@ func GetProducts() gin.HandlerFunc {
 			return
 		}
 
-		c.JSON(http.StatusCreated, sharedDtos.BuildResponse("", data))
+		c.JSON(http.StatusOK, sharedDtos.BuildResponse("", data))
 
 	}
 }
@@ -76,6 +76,6 @@ func GetAProduct() gin.HandlerFunc {
 			return
 		}
 
-		c.JSON(http.StatusCreated, sharedDtos.BuildResponse("", data))
+		c.JSON(http.StatusOK, sharedDtos.BuildResponse("", data))
 	}
 }

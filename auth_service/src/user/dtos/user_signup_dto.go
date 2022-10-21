@@ -22,6 +22,12 @@ type UserLoginRequest struct {
 	IpAddress string `form:"ip_address" json:"ip_address" xml:"ip_address"`
 }
 
+// swagger:parameters GetUsersByIdsRequest
+type GetUsersByIdsRequest struct {
+	// required: true
+	Ids string `form:"ids" json:"ids" xml:"ids" binding:"required"`
+}
+
 type UserInfoResponse struct {
 	ID     int    `form:"id" json:"id" xml:"id"`
 	Name   string `form:"name" json:"name" xml:"name"`
