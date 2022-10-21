@@ -30,7 +30,7 @@ var env *EnvVariables
 
 func initEnvVariable() {
 	if err := godotenv.Load(".env"); err != nil {
-		fmt.Println("Error loading .env file")
+		fmt.Println("Error loading .env file", err)
 	}
 
 	env = &EnvVariables{
