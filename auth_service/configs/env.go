@@ -8,7 +8,6 @@ package configs
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -21,6 +20,9 @@ type EnvVariables struct {
 	DbPassword string `default:"password"`
 	DbHostPort string `default:"localhost:3306"`
 	DbName     string `default:"auth_db_name"`
+
+	JwtSecret string `default:"aTooRandomKey"`
+	JwtIssuer string `default:"aRandomIssuer"`
 
 	AuthServiceBaseUrl string `default:"http://localhost:3000"`
 }
@@ -40,14 +42,14 @@ func initEnvVariable() {
 		DbHostPort: os.Getenv("DB_HOST_PORT"),
 		DbName:     os.Getenv("DB_NAME"),
 
+		JwtSecret: os.Getenv("JWT_SECRET"),
+		JwtIssuer: os.Getenv("JWT_ISSUER"),
+
 		AuthServiceBaseUrl: os.Getenv("AUTH_SERVICE_BASE_URL"),
 	}
 }
 
 func GetEnv() *EnvVariables {
 	initEnvVariable()
-	if env == nil {
-		log.Fatal("Error occurred during initEnvVariable method.")
-	}
 	return env
 }
