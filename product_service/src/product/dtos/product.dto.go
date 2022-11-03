@@ -28,4 +28,6 @@ type GetProductsQuery struct {
 	Name string `json:"name" form:"name"`
 	// required: false
 	CategoryID string `json:"category_id" form:"category_id"`
+	// required: false
+	SellingBy string `json:"selling_by" form:"selling_by"`
 }

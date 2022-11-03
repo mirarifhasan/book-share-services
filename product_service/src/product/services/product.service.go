@@ -57,6 +57,9 @@ func GetProducts(c *gin.Context, query dtos.GetProductsQuery) (interface{}, erro
 	if len(query.CategoryID) > 0 {
 		queryBuilder.Where(map[string]interface{}{"category_id": query.CategoryID})
 	}
+	if len(query.SellingBy) > 0 {
+		queryBuilder.Where(map[string]interface{}{"selling_by": query.SellingBy})
+	}
 
 	queryBuilder.Preload("Category").Find(&products)
 
