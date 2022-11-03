@@ -6,6 +6,7 @@ import (
 	"auth_service/src/user/dtos"
 	"auth_service/src/user/models"
 	"errors"
+	"fmt"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -74,5 +75,6 @@ func GetUsersByIds(ids []int) (interface{}, error) {
 	if err := db.DB.Model(&models.User{}).Find(&users, ids).Error; err != nil {
 		return nil, err
 	}
+	fmt.Println(users)
 	return users, nil
 }

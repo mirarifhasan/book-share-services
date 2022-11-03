@@ -102,6 +102,16 @@ func GetAProduct(id int) (interface{}, error) {
 		return nil, err
 	}
 
-	return product, nil
+	resp, _ := auth_service.GetUsersByIds([]int{product.SellingBy})
+	var result map[string]interface{}
+	_ = json.Unmarshal(resp, &result)
+
+	var productResp map[string]interface{}
+	data, _ := json.Marshal(product)
+	json.Unmarshal(data, &productResp)
+
+	productResp["seller_info"] = result["data"].([]interface{})[0]
+
+	return productResp, nil
 
 }
