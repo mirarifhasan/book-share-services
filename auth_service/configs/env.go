@@ -25,6 +25,7 @@ type EnvVariables struct {
 	JwtIssuer string `default:"aRandomIssuer"`
 
 	AuthServiceBaseUrl string `default:"http://localhost:3000"`
+	ProductServiceBaseUrl string `default:"http://localhost:3012"`
 }
 
 var env *EnvVariables
@@ -46,6 +47,7 @@ func initEnvVariable() {
 		JwtIssuer: os.Getenv("JWT_ISSUER"),
 
 		AuthServiceBaseUrl: os.Getenv("AUTH_SERVICE_BASE_URL"),
+		ProductServiceBaseUrl: os.Getenv("PRODUCT_SERVICE_BASE_URL"),
 	}
 }
 
