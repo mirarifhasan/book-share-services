@@ -58,12 +58,29 @@ services:
     expose:
       - '3012'
 
+  order_service:
+    build: order_service/.
+    container_name: backend-nest-catering-service
+    restart: unless-stopped
+    depends_on:
+      - mysql_database
+      - phpmyadmin_v2
+    env_file: order_service/.env
+    environment:
+      - PORT=3013
+      - DB_HOST=mysql_database
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=password
+    ports:
+      - '3013:3013'
+    expose:
+      - '3013'
 
 # 3009: Database Server (MySql)
 # 3010: phpmyadmin_v2
 
 # 3011: Auth Service
 # 3012: Product Service
-# 3013: Cart Service
-# 3014: Order Service
+# 3013: Cart + Order Service
 # 3015: Payment Service
